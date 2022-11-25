@@ -30,7 +30,7 @@ const createPageLoadingGuard = (router: Router) => {
 const createPermissionGuard = (router: Router) => {
   router.beforeEach(async (to) => {
     const token = useStorage(TOKEN_KEY, null);
-    if (token.value) {
+    if (!token.value) {
       if (to.path === '/login') return { path: '/' };
 
       return true;

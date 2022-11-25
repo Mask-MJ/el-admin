@@ -37,11 +37,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       chunkSizeWarningLimit: 2000,
     },
     css: {
-      // preprocessorOptions: {
-      //   scss: {
-      //     additionalData: `@use "/@/styles/element/index.scss" as *;`,
-      //   },
-      // },
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "/@/styles/element/index.scss" as *;`,
+        },
+      },
     },
     plugins: createVitePlugins(),
   };

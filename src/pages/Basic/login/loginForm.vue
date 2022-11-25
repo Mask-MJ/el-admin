@@ -1,9 +1,9 @@
 <template>
-  <div class="w-100 h-120 bg-white">
-    <el-input v-model="input" type="password" placeholder="Please input password" show-password />
+  <div class="loginForm">
+    <div class="text-2xl font-bold mb-6">登陆</div>
     <FormProvider :form="form">
       <SchemaField :schema="schema" />
-      <Submit @submit="onSubmit">提交</Submit>
+      <Submit class="w-full" size="large" @submit="onSubmit">提交</Submit>
     </FormProvider>
   </div>
 </template>
@@ -11,34 +11,73 @@
 <script setup lang="ts">
   import { createForm } from '@formily/core';
   import { createSchemaField, FormProvider } from '@formily/vue';
-  import { FormItem, Submit, FormGrid, Input } from '@formily/element-plus';
+  import { observer } from '@formily/reactive-vue';
+  import { FormItem, Submit, FormLayout, Input, Password, Checkbox } from '@formily/element-plus';
 
-  const input = ref('');
+  const img = ref();
+  const imgDom = observer(
+    defineComponent({
+      name: 'PicCode',
+      setup() {
+        return () =>
+          h(ElImage, {
+            width: '106px',
+            height: '40px',
+            preview: false,
+            src: img.value,
+            onClick: () => handleStart(),
+          });
+      },
+    }),
+  );
+
   const form = createForm();
+  const handleStart = () => {};
   const schema = {
     type: 'object',
     properties: {
-      userName: {
-        type: 'string',
-        title: '用户名',
-        'x-decorator': 'FormItem',
-        'x-component': 'Input',
-      },
-      password: {
-        type: 'string',
-        title: '密码',
-        'x-decorator': 'FormItem',
-        'x-component': 'Input',
+      layout: {
+        type: 'void',
+        'x-component': 'FormLayout',
+        className: 'mb-14',
+        properties: {
+          username: {
+            type: 'string',
+            default: 'admin',
+            'x-decorator': 'FormItem',
+            'x-component': 'Input',
+            'x-component-props': { placeholder: '账号', size: 'large' },
+            'x-validator': [{ required: true, message: '账号不能为空' }],
+          },
+          password: {
+            type: 'string',
+            default: 'admin123',
+            'x-decorator': 'FormItem',
+            'x-component': 'Password',
+            'x-component-props': { placeholder: '密码', size: 'large' },
+            'x-validator': [{ required: true, message: '密码不能为空' }],
+          },
+          picCode: {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'Input',
+            'x-component-props': { placeholder: '图片验证码', size: 'large' },
+            'x-validator': [{ required: true, message: '验证码不能为空' }],
+            'x-decorator-props': { addonAfter: imgDom, bordered: true },
+          },
+          checkboxGroup: {
+            type: 'boolean',
+            'x-decorator': 'FormItem',
+            'x-component': 'Checkbox.Group',
+            enum: [{ label: '记住我', value: true }],
+          },
+        },
       },
     },
   };
 
   const { SchemaField } = createSchemaField({
-    components: {
-      FormItem,
-      FormGrid,
-      Input,
-    },
+    components: { FormLayout, FormItem, Input, Password, Image, imgDom, Checkbox },
   });
 
   const onSubmit = (value) => {
@@ -46,4 +85,15 @@
   };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .loginForm {
+    position: absolute;
+    top: calc(50% - 250px);
+    right: 10%;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    border-radius: 24px;
+    padding: 32px 24px;
+  }
+</style>

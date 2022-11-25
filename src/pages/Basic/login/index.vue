@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-black w-screen h-screen">
+  <div class="relative">
+    <Earth />
     <LoginForm />
-    <!-- <el-input v-model="d" placeholder="" size="normal" clearable @change=""></el-input> -->
+    <!-- <el-button type="primary" size="default" @click="toggleDark()">222</el-button> -->
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useRouter } from 'vue-router';
+  import Earth from './Earth/index.vue';
   import LoginForm from './loginForm.vue';
-  const d = ref('');
-  const router = useRouter();
-  console.log(router);
+  // const isDark = useDark();
+  // const toggleDark = useToggle(isDark);
 </script>
 
 <style scoped></style>

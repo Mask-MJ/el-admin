@@ -7,13 +7,16 @@ import VueI18n from '@intlify/vite-plugin-vue-i18n';
 import Pages from 'vite-plugin-pages';
 import Layouts from 'vite-plugin-vue-layouts';
 // import Inspect from 'vite-plugin-inspect';
-import vitePluginImp from 'vite-plugin-imp';
+// 用于读取 three.js 材质文件
+import glsl from 'vite-plugin-glsl';
 
 import { configAutoImportPlugin } from './autoImport';
+import { configStyleImportPlugin } from './styleImport';
 
 export const createVitePlugins = (): PluginOption[] => [
   vue(),
   mkcert(),
+  glsl(),
   Pages({
     dirs: [
       { dir: 'src/pages', baseRoute: '' },
@@ -27,17 +30,7 @@ export const createVitePlugins = (): PluginOption[] => [
     include: [path.resolve(process.cwd(), 'locales/**')],
   }),
   Unocss(),
-  // vitePluginImp({
-  //   libList: [
-  //     {
-  //       libName: '@formily/element-plus',
-  //       libDirectory: 'esm',
-  //       style(name) {
-  //         return `@formily/element-plus/esm/${name}/style.js`;
-  //       },
-  //     },
-  //   ],
-  // }),
+  configStyleImportPlugin(),
   ...configAutoImportPlugin(),
   // Inspect(),
 ];
