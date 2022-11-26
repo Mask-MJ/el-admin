@@ -13,6 +13,7 @@
   import { createSchemaField, FormProvider } from '@formily/vue';
   import { observer } from '@formily/reactive-vue';
   import { FormItem, Submit, FormLayout, Input, Password, Checkbox } from '@formily/element-plus';
+  import { ElImage } from 'element-plus';
 
   const img = ref();
   const imgDom = observer(

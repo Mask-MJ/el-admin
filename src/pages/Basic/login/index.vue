@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-  import Earth from './Earth/index.vue';
-  import LoginForm from './loginForm.vue';
+  import Earth from './components/Earth/index.vue';
+  import LoginForm from './components/loginForm.vue';
   // const isDark = useDark();
   // const toggleDark = useToggle(isDark);
 </script>
