@@ -14,7 +14,9 @@
   import { observer } from '@formily/reactive-vue';
   import { FormItem, Submit, FormLayout, Input, Password, Checkbox } from '@formily/element-plus';
   import { ElImage } from 'element-plus';
+  import { getPictureCode } from '/@/api/basic/user';
 
+  const uuid = ref();
   const img = ref();
   const imgDom = observer(
     defineComponent({
@@ -32,8 +34,18 @@
     }),
   );
 
+  const handleStart = async () => {
+    const pictureCode = await getPictureCode();
+    console.log(pictureCode);
+    uuid.value = pictureCode.uuid;
+    img.value = `data:image/gif;base64,${pictureCode.img}`;
+  };
+
+  watchEffect(() => {
+    handleStart();
+  });
+
   const form = createForm();
-  const handleStart = () => {};
   const schema = {
     type: 'object',
     properties: {
