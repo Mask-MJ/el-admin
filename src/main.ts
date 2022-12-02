@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 
 import '@unocss/reset/normalize.css';
-// import '@unocss/reset/tailwind.css';
 import '@unocss/reset/eric-meyer.css';
 import 'uno.css';
 import 'nprogress/nprogress.css';
@@ -19,7 +18,9 @@ const setupApp = async () => {
   const app = createApp(App);
   setupStore(app);
   await setupRouter(app);
-
+  Object.values(import.meta.glob<{ install: Fn }>('./modules/*.ts', { eager: true })).forEach((i) =>
+    i.install?.(app),
+  );
   app.mount('#app');
 };
 

@@ -10,13 +10,13 @@ import generatedRoutes from 'virtual:generated-pages';
 const LayoutRoutes = setupLayouts(generatedRoutes);
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
-  routes: [...basicRoutes, ...LayoutRoutes],
+  routes: [...basicRoutes],
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
 export const setupRouter = async (app: App) => {
-  // await addDynamicRoutes();
+  await addDynamicRoutes();
   setupRouterGuard(router);
 
   app.use(router);

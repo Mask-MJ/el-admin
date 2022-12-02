@@ -17,6 +17,7 @@ export const usePermissionStore = defineStore('permission', () => {
 
   const buildRoutes = async (LayoutRoutes: RouteRecordRaw[]): Promise<RouteItem[]> => {
     let routerArray = await getMenuList();
+    /** 提取完整路径 */
     const generateRoutes: RouteItem[] = [];
     LayoutRoutes.forEach((ele) => {
       if (['/', '/login', '/:all(.*)*'].includes(ele.path)) {

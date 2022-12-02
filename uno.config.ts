@@ -4,47 +4,36 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
+  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
+import { icons as antdIcons } from '@iconify-json/ant-design';
+import { icons as epIcons } from '@iconify-json/ep';
+const antdIconNames = Object.keys(antdIcons.icons).map(
+  (iconName) => `i-${antdIcons.prefix}:${iconName}`,
+);
+const epIconNames = Object.keys(epIcons.icons).map((iconName) => `i-${epIcons.prefix}:${iconName}`);
 
 export default defineConfig({
-  shortcuts: [
-    [
-      'btn',
-      'px-4 py-1 rounded inline-block bg-teal-700 text-white cursor-pointer hover:bg-teal-800 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50',
-    ],
-    [
-      'icon-btn',
-      'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600',
-    ],
-    ['wh-full', 'w-full h-full'],
-    ['flex-center', 'flex justify-center items-center'],
-  ],
+  shortcuts: [['icon-btn', 'flex items-center cursor-pointer h-full hover:bg-light-400 px-2']],
   presets: [
     presetUno(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
       warn: true,
-      extraProperties: {
-        dispaly: 'inline-block',
-      },
+      extraProperties: { display: 'inline-block' },
     }),
     presetTypography(),
+    presetWebFonts({
+      fonts: {
+        sans: 'DM Sans',
+        serif: 'DM Serif Display',
+        mono: 'DM Mono',
+      },
+    }),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
-  safelist: [...'prose prose-sm m-auto text-left'.split(' ')],
-  exclude: [
-    'node_modules',
-    '.git',
-    '.github',
-    '.husky',
-    '.vscode',
-    'build',
-    'dist',
-    'mock',
-    'public',
-    'types',
-  ],
+  safelist: [...'prose prose-sm m-auto text-left'.split(' '), ...antdIconNames, ...epIconNames],
 });

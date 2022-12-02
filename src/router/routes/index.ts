@@ -5,7 +5,7 @@ export const basicRoutes: RouteType[] = [
   {
     name: 'Login',
     path: '/login',
-    component: () => import('/@/pages/Basic/login/index.vue'),
+    component: () => import('/@/views/Basic/login/index.vue'),
     hidden: true,
   },
   {

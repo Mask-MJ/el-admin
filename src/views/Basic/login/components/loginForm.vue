@@ -16,18 +16,20 @@
   import { ElImage } from 'element-plus';
   import { getPictureCode } from '/@/api/basic/user';
 
-  const uuid = ref();
-  const img = ref();
+  const userStore = useUserStore();
+  const pictureCode = reactive({
+    uuid: '',
+    img: '',
+  });
   const imgDom = observer(
     defineComponent({
       name: 'PicCode',
       setup() {
         return () =>
           h(ElImage, {
-            width: '106px',
-            height: '40px',
-            preview: false,
-            src: img.value,
+            width: '106',
+            fit: 'cover',
+            src: pictureCode.img,
             onClick: () => handleStart(),
           });
       },
@@ -35,10 +37,9 @@
   );
 
   const handleStart = async () => {
-    const pictureCode = await getPictureCode();
-    console.log(pictureCode);
-    uuid.value = pictureCode.uuid;
-    img.value = `data:image/gif;base64,${pictureCode.img}`;
+    const { uuid, img } = await getPictureCode();
+    pictureCode.uuid = uuid;
+    pictureCode.img = `data:image/gif;base64,${img}`;
   };
 
   watchEffect(() => {
@@ -93,12 +94,19 @@
     components: { FormLayout, FormItem, Input, Password, Image, imgDom, Checkbox },
   });
 
-  const onSubmit = (value) => {
-    console.log(value);
+  const onSubmit = async (value) => {
+    const userInfo = await userStore.login({ uuid: pictureCode.uuid, ...value });
+    if (userInfo) {
+      ElNotification.success({
+        title: '登录成功',
+        message: `欢迎回来: ${userInfo.user.nickName}`,
+        duration: 3,
+      });
+    }
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .loginForm {
     position: absolute;
     top: calc(50% - 250px);

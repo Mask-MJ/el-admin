@@ -18,10 +18,7 @@ export const createVitePlugins = (): PluginOption[] => [
   mkcert(),
   glsl(),
   Pages({
-    dirs: [
-      { dir: 'src/pages', baseRoute: '' },
-      { dir: 'src/pages/Basic', baseRoute: '' },
-    ],
+    dirs: [{ dir: 'src/views/pages', baseRoute: '' }],
     exclude: ['**/components/*.vue'],
   }),
   Layouts(),

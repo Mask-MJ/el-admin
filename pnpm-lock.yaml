@@ -4,6 +4,8 @@ specifiers:
   '@formily/core': ^2.2.12
   '@formily/element-plus': 1.0.0-beta.7
   '@formily/vue': ^2.2.12
+  '@iconify-json/ant-design': ^1.1.4
+  '@iconify-json/ep': ^1.1.8
   '@intlify/vite-plugin-vue-i18n': ^6.0.3
   '@types/lodash-es': ^4.17.6
   '@types/node': ^18.11.9
@@ -51,6 +53,8 @@ dependencies:
   '@formily/core': 2.2.12
   '@formily/element-plus': 1.0.0-beta.7_mgnvym7yiazkylwwogi5r767ue
   '@formily/vue': 2.2.12_mgnvym7yiazkylwwogi5r767ue
+  '@iconify-json/ant-design': 1.1.4
+  '@iconify-json/ep': 1.1.8
   '@vueuse/core': 9.5.0_vue@3.2.45
   '@vueuse/head': 0.9.8_vue@3.2.45
   element-plus: 2.2.21_vue@3.2.45
@@ -523,9 +527,20 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@iconify-json/ant-design/1.1.4:
+    resolution: {integrity: sha512-bx8sSFrrJloQUdStRbBn3TMmeKWfbx51aVDF1fEOH/LGKXGiBmtybURjlTdQPwE7S0zhlXcve+agYHuGb2Q9hQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify-json/ep/1.1.8:
+    resolution: {integrity: sha512-pHCrsWU1R9/pTDU+Fps4+mjqOQFLtpGdXWegkhQ1P1DlgQAlCPyICtl6E1s8b7VwJMeZXaK84HA02UF6WD0o/Q==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.0.1:
     resolution: {integrity: sha512-t8IyICk25wgZL4YKn/2kYfjG5MGA6EWZlaUJZ1OEIku4V+kX9V900T5E4HIqS3hLyD6/RJET0zY4vxO9pHLHHw==}
