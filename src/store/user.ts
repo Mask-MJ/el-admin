@@ -50,7 +50,7 @@ export const useUserStore = defineStore('user', () => {
   const getUserInfoAction = async () => {
     if (!state.token) return null;
     const userInfo = await getUserInfoAsync();
-    useStorage(USER_INFO_KEY, userInfo.user);
+    useStorage(USER_INFO_KEY, userInfo.data.user);
     return userInfo;
   };
 

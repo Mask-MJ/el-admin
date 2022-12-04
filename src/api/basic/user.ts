@@ -18,10 +18,12 @@ enum Api {
 export const loginApi = (params: LoginParams) =>
   defHttp.post<LoginResultModel>({ url: Api.Login, params });
 /** 获取用户信息 */
-export const getUserInfoAsync = () => defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo });
+export const getUserInfoAsync = () =>
+  defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { isReturnNativeResponse: true });
 /** 退出登录 */
 export const doLogout = () => defHttp.delete({ url: Api.Logout });
 /** 获取图片验证码 */
-export const getPictureCode = () => defHttp.get<GetPictureModel>({ url: Api.GetPictureCode });
+export const getPictureCode = () =>
+  defHttp.get<GetPictureModel>({ url: Api.GetPictureCode }, { isReturnNativeResponse: true });
 /** 获取路由菜单列表 */
 export const getMenuList = () => defHttp.get<RouteItem[]>({ url: Api.GetMenuList });

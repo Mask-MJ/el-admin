@@ -37,9 +37,11 @@
   );
 
   const handleStart = async () => {
-    const { uuid, img } = await getPictureCode();
-    pictureCode.uuid = uuid;
-    pictureCode.img = `data:image/gif;base64,${img}`;
+    // const { uuid, img } = await getPictureCode();
+    const result = await getPictureCode();
+    console.log(result);
+    pictureCode.uuid = result.data.uuid;
+    pictureCode.img = `data:image/gif;base64,${result.data.img}`;
   };
 
   watchEffect(() => {
@@ -71,7 +73,7 @@
             'x-component-props': { placeholder: '密码', size: 'large' },
             'x-validator': [{ required: true, message: '密码不能为空' }],
           },
-          picCode: {
+          code: {
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
