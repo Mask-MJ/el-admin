@@ -16,7 +16,11 @@ const antdIconNames = Object.keys(antdIcons.icons).map(
 const epIconNames = Object.keys(epIcons.icons).map((iconName) => `i-${epIcons.prefix}:${iconName}`);
 
 export default defineConfig({
-  shortcuts: [['icon-btn', 'flex items-center cursor-pointer h-full hover:bg-light-400 px-2']],
+  shortcuts: [
+    ['flex-c-b', 'flex items-center justify-between'],
+    ['flex-c-c', 'flex items-center justify-center'],
+    ['icon-btn', 'flex items-center cursor-pointer h-full hover:bg-light-400 px-2'],
+  ],
   presets: [
     presetUno(),
     presetAttributify(),

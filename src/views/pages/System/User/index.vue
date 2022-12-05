@@ -13,6 +13,7 @@
     address: 'No. 189, Grove St, Los Angeles',
   };
   const tableData = ref(Array.from({ length: 50 }).fill(item));
+  console.log('进入user');
 </script>
 
 <style scoped></style>

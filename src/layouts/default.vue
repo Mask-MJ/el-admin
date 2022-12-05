@@ -6,7 +6,7 @@
       </el-scrollbar>
     </el-aside>
     <el-container>
-      <el-header class="border-b-1 border-light-600 !px-0" height="100px">
+      <el-header class="border-b-1 border-light-600 !px-0" height="110px">
         <Header />
         <Tabs />
       </el-header>

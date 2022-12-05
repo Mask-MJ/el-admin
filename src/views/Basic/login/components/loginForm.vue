@@ -37,11 +37,11 @@
   );
 
   const handleStart = async () => {
-    // const { uuid, img } = await getPictureCode();
-    const result = await getPictureCode();
-    console.log(result);
-    pictureCode.uuid = result.data.uuid;
-    pictureCode.img = `data:image/gif;base64,${result.data.img}`;
+    const { uuid, img } = await getPictureCode();
+    // const result = await getPictureCode();
+    // console.log(result);
+    pictureCode.uuid = uuid;
+    pictureCode.img = `data:image/gif;base64,${img}`;
   };
 
   watchEffect(() => {
